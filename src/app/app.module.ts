@@ -10,6 +10,8 @@ import { RegisterUserComponent } from './components/pages/registerUser/register-
 import { RegisterAdminComponent } from './components/pages/registerAdmin/register-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadAllBooksComponent } from './components/load-all-books/load-all-books.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     AdminMainPageComponent,
     RegisterUserComponent,
-    RegisterAdminComponent
+    RegisterAdminComponent,
+    LoadAllBooksComponent,
+    BookCardComponent
   ],
   imports: [
     BrowserModule,
