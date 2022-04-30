@@ -11,22 +11,47 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./register-user.component.scss']
 })
 export class RegisterUserComponent implements OnInit {
+
+  emailPattern = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
+  passwordPattern = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{10,}$/;
+  phoneNumberPattern = /\+\d{1,3}[ ]?\d{3,15}\b/;
+
   registerForm = this.fb.group({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128)]),
+    lastName: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128)]),
     email: new FormControl('', [
-      Validators.required,
-      // Validators.pattern('/[a-zA-Z]+\@[a-zA-Z]+\.[a-zA-Z]+/g')
-    ]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
-    street: new FormControl('', [Validators.required]),
-    streetNumber: new FormControl('', [Validators.required]),
-    buildingNumber: new FormControl('', [Validators.required]),
-    apartmentNumber: new FormControl('', [Validators.required]),
-    additionalInfo: new FormControl('', [Validators.required]),
+        Validators.required,
+        Validators.maxLength(256),
+        Validators.pattern(this.emailPattern)]),
+    phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.phoneNumberPattern)]),
+    password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.passwordPattern)]),
+    country: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128)]),
+    city: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128)]),
+    street: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128)]),
+    streetNumber: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(65)]),
+    buildingNumber: new FormControl('', [
+        Validators.maxLength(65),]),
+    apartmentNumber: new FormControl('', [
+        Validators.maxLength(65),]),
+    additionalInfo: new FormControl('', [
+        Validators.maxLength(1028),]),
+
   });
 
 
@@ -38,6 +63,56 @@ export class RegisterUserComponent implements OnInit {
     console.log(this.registerForm);
 
   }
+
+  get firstName(): FormControl {
+    return this.registerForm.get('firstName') as FormControl;
+  }
+
+  get lastName(): FormControl {
+    return this.registerForm.get('lastName') as FormControl;
+  }
+
+  get email(): FormControl {
+    return this.registerForm.get('email') as FormControl;
+  }
+
+  get phoneNumber(): FormControl {
+    return this.registerForm.get('phoneNumber') as FormControl;
+  }
+
+  get password(): FormControl {
+    return this.registerForm.get('password') as FormControl;
+  }
+
+  get country(): FormControl {
+    return this.registerForm.get('country') as FormControl;
+  }
+
+  get city(): FormControl {
+    return this.registerForm.get('city') as FormControl;
+  }
+
+  get street(): FormControl {
+    return this.registerForm.get('street') as FormControl;
+  }
+
+  get streetNumber(): FormControl {
+    return this.registerForm.get('streetNumber') as FormControl;
+  }
+
+  get buildingNumber(): FormControl {
+    return this.registerForm.get('buildingNumber') as FormControl;
+  }
+
+  get apartmentNumber(): FormControl {
+    return this.registerForm.get('apartmentNumber') as FormControl;
+  }
+
+  get additionalInfo(): FormControl {
+    return this.registerForm.get('additionalInfo') as FormControl;
+  }
+
+
 
   submitRegister(): void {
     if (this.registerForm.invalid) {

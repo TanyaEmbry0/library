@@ -13,20 +13,25 @@ export class LoginPageComponent implements OnInit {
 
   loginForm = this.fb.group({
     email: new FormControl('', [
-      Validators.required,
-      // Validators.pattern('/[a-zA-Z]+\@[a-zA-Z]+\.[a-zA-Z]+/g')
-    ]),
+      Validators.required]),
     password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-  });
+      Validators.required])
+  })
 
   constructor(private fb: FormBuilder,
     private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
+
+  get email(): FormControl {
+    return this.loginForm.get('email') as FormControl;
+  }
+
+  get password(): FormControl {
+    return this.loginForm.get('password') as FormControl;
+  }
+
   submitLogin(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
