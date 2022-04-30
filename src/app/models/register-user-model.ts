@@ -7,7 +7,7 @@ export interface RegisterUserModel {
   country: string,
   city: string,
   street: string,
-  streetNumber?: string,
+  streetNumber: string,
   buildingNumber?: string,
   apartmentNumber?: string,
   additionalInfo?: string,

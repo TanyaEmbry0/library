@@ -54,7 +54,7 @@
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example3c">Phone number</label>
-                      <input type="number" class="form-control" formControlName="phoneNumber" />
+                      <input type="text" class="form-control" formControlName="phoneNumber" />
                       <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-danger">
                         <small *ngIf="phoneNumber.errors?.['required']">PhoneNumber is required!</small>
                         <small *ngIf="phoneNumber.errors?.['pattern']">This is not valid phoneNumber!</small>
@@ -114,7 +114,7 @@
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example4c">streetNumber</label>
-                      <input type="number" class="form-control" formControlName="streetNumber"/>
+                      <input type="text" class="form-control" formControlName="streetNumber"/>
                       <div *ngIf="streetNumber.invalid && (streetNumber.dirty || streetNumber.touched)" class="text-danger">
                         <small *ngIf="streetNumber.errors?.['required']">Street number is required!</small>
                         <small *ngIf="streetNumber.errors?.['maxlength']">Street number cannot be longer than 65 characters!</small>
@@ -126,7 +126,7 @@
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example4c">buildingNumber</label>
-                      <input type="number" class="form-control" formControlName="buildingNumber"/>
+                      <input type="text" class="form-control" formControlName="buildingNumber"/>
                       <div *ngIf="buildingNumber.invalid " class="text-danger">
                         <small *ngIf="buildingNumber.errors?.['maxlength']">Street number cannot be longer than 65 characters!</small>
                       </div>
@@ -137,7 +137,7 @@
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example4c">apartmentNumber</label>
-                      <input type="number" class="form-control" formControlName="apartmentNumber"/>
+                      <input type="text" class="form-control" formControlName="apartmentNumber"/>
                       <div *ngIf="apartmentNumber.invalid " class="text-danger">
                         <small *ngIf="apartmentNumber.errors?.['maxlength']">Apartment number cannot be longer than 65 characters!</small>
                       </div>
