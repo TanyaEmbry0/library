@@ -5,7 +5,8 @@ import { CookieService } from "ngx-cookie-service";
 import { map, Observable, ReplaySubject } from "rxjs";
 import { AdminRegister } from "../components/interfaces/adminRegister.interface";
 import { UserInterface } from "../components/interfaces/user.interface";
-import { UserRegister } from "../components/interfaces/userRegister.interface";
+import { API } from "../enums/api-info";
+import { Users } from "../enums/users-endpoints";
 
 @Injectable({ providedIn: 'root' })
 
@@ -20,7 +21,7 @@ export class AuthenticationService {
   login(formGroup: FormGroup): Observable<UserInterface> {
     return this.httpClient
       .post<UserInterface>(
-        'https://schoolofdotnet2022-staraplanina-api.azurewebsites.net/api/v1/Users/login',
+        API.Get(Users.Login),
         formGroup.value
       )
       .pipe(
@@ -31,10 +32,10 @@ export class AuthenticationService {
       );
   }
 
-  userRegister(formGroup: FormGroup){
+  userRegister(formGroup: FormGroup) {
     return this.httpClient
       .post(
-        'https://schoolofdotnet2022-staraplanina-api.azurewebsites.net/api/v1/Users/register',
+        API.Get(Users.Register),
         formGroup.value
       )
 
@@ -43,12 +44,8 @@ export class AuthenticationService {
   adminRegister(formGroup: FormGroup): Observable<AdminRegister> {
     return this.httpClient
       .post<AdminRegister>(
-        'https://schoolofdotnet2022-staraplanina-api.azurewebsites.net/api/v1/Users/adminregister',
+        API.Get(Users.RegisterAdmin),
         formGroup.value
       )
-
   }
-
-
-
 }
