@@ -54,4 +54,8 @@ export class AuthenticationService {
         formGroup.value
       )
   }
+ logout(){
+this.cookieService.delete('token');
+this.currentUser.next(null);
+  }
 }
