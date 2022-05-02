@@ -30,10 +30,6 @@ export class AdminService{
           id: id,
         } );
     }
-    // approveUser(id: string){
-    //   return this.httpClient.post<any>(
-    //     API.Endpoint(Admin.ApproveUser),id);
-    // }
 
     deleteUser(id: string){
       return this.httpClient.delete<any>(

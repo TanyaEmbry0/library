@@ -13,7 +13,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterUserComponent implements OnInit {
 
   emailPattern = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
-  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10}$/;
+  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
   phoneNumberPattern = /\+\d{1,3}[ ]?\d{3,15}\b/;
 
   registerForm = this.fb.group({
@@ -51,18 +51,13 @@ export class RegisterUserComponent implements OnInit {
         Validators.maxLength(65),]),
     additionalInfo: new FormControl('', [
         Validators.maxLength(1028),]),
-
   });
 
-
-    constructor(private fb: FormBuilder,
-              private authenticationService: AuthenticationService,
-              private router: Router) { }
+  constructor(private fb: FormBuilder,
+            private authenticationService: AuthenticationService,
+            private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.registerForm);
-    console.log(this.streetNumber);
-
 
   }
 
@@ -114,8 +109,6 @@ export class RegisterUserComponent implements OnInit {
     return this.registerForm.get('additionalInfo') as FormControl;
   }
 
-
-
   submitRegister(): void {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
@@ -128,7 +121,6 @@ export class RegisterUserComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.router.navigate(['/admin'])
-          console.log(response);
 
         },
         error: (error) => {
