@@ -1,11 +1,15 @@
-<div class="d-flex">
+
+<div *ngFor="let book of books" >
+  <div class="d-flex">
     <div class="card" >
       <div class="img-books-container">
-        <img class="card-img-top" src="{{book?.cover}}" alt="Card image cap">
+        <img class="card-img-top" src="{{book?.cover}}" alt="Card image cap" style="width: 200px">
       </div>
       <div class="card-body">
         <p class="card-text">Title: <span class="text">{{book?.title}}</span> </p>
         <p class="card-text">Author: <span class="text">{{book?.authors}}</span> </p>
+        <p class="card-text">Description: <span class="text">{{book?.description}}</span> </p>
       </div>
     </div>
   </div>
+</div>

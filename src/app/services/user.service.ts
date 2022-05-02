@@ -12,10 +12,10 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   getUsersCount() {
-    return this.httpClient.get<number>(API.Get(Users.Count));
+    return this.httpClient.get<number>(API.Endpoint(Users.Count));
   }
 
   getUser(id: string) {
-    return this.httpClient.get<UserRegister[]>(API.Get(Users.GetById(id)));
+    return this.httpClient.get<UserRegister[]>(API.Endpoint(Users.GetById(id)));
   }
 }

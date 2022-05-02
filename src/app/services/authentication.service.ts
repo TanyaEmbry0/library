@@ -7,25 +7,31 @@ import { AdminRegister } from "../components/interfaces/adminRegister.interface"
 import { UserInterface } from "../components/interfaces/user.interface";
 import { API } from "../enums/api-info";
 import { Users } from "../enums/users-endpoints";
+import { UserFullInfo } from "../models and interfaces/user-full-info.interface";
+import { UserLogin } from "../models and interfaces/user-login.interface";
+
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthenticationService {
-  private currentUser = new ReplaySubject<UserInterface | null>(1);
+  // private currentUser = new ReplaySubject<UserFullInfo | null>(1);
+  // currentUser$ = this.currentUser.asObservable();
+  private currentUser = new ReplaySubject<UserLogin | null>(1);
   currentUser$ = this.currentUser.asObservable();
 
   constructor(private httpClient: HttpClient,
-    private cookieService: CookieService) { }
+              private cookieService: CookieService) { }
 
 
-  login(formGroup: FormGroup): Observable<UserInterface> {
+  login(formGroup: FormGroup): Observable<UserLogin> {
     return this.httpClient
-      .post<UserInterface>(
-        API.Get(Users.Login),
+      .post<UserLogin>(
+        API.Endpoint(Users.Login),
         formGroup.value
       )
       .pipe(
         map((response) => {
+          this.cookieService.set('token', response.token.result);
           this.currentUser.next(response);
           return response;
         })
@@ -35,7 +41,7 @@ export class AuthenticationService {
   userRegister(formGroup: FormGroup) {
     return this.httpClient
       .post(
-        API.Get(Users.Register),
+        API.Endpoint(Users.Register),
         formGroup.value
       )
 
@@ -44,7 +50,7 @@ export class AuthenticationService {
   adminRegister(formGroup: FormGroup): Observable<AdminRegister> {
     return this.httpClient
       .post<AdminRegister>(
-        API.Get(Users.RegisterAdmin),
+        API.Endpoint(Users.RegisterAdmin),
         formGroup.value
       )
   }

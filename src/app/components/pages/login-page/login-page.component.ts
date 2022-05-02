@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -19,7 +20,8 @@ export class LoginPageComponent implements OnInit {
   })
 
   constructor(private fb: FormBuilder,
-    private authenticationService: AuthenticationService) { }
+              private router: Router,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -37,13 +39,16 @@ export class LoginPageComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       return;
     }
+
     this.subscription = this.authenticationService
       .login(this.loginForm)
       .pipe(take(1))
       .subscribe({
         next: (response) => {
-          console.log(response);
+          // console.log(response);
+          this.router.navigate(['/admin']);
 
+          // return response;
         },
 
         error: (error) => {

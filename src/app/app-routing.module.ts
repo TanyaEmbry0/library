@@ -4,6 +4,7 @@ import { LoadAllBooksComponent } from './components/load-all-books/load-all-book
 import { AdminMainPageComponent } from './components/pages/admin-main-page/admin-main-page.component';
 import { HomePageComponent } from './components/pages/home/home-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { NewBooksListComponent } from './components/pages/new-books-list/new-books-list.component';
 import { RegisterAdminComponent } from './components/pages/registerAdmin/register-admin.component';
 import { RegisterUserComponent } from './components/pages/registerUser/register-user.component';
 
@@ -34,8 +35,11 @@ const routes: Routes = [
   },
   {
     path: 'catalog',
-    component: LoadAllBooksComponent,
-    
+    component: LoadAllBooksComponent
+  },
+  {
+    path: 'newBooks',
+    component: NewBooksListComponent
   }
 ];
 

@@ -16,7 +16,10 @@ export class AuthInterceptors implements HttpInterceptor {
     const token = this.cookieService.get('token');
     const authReq = req.clone({
       headers: req.headers.set('Authorization', 'Bearer ' + token)
+
+
     });
+
     return next.handle(authReq);
   }
 

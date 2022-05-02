@@ -9,9 +9,13 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { RegisterUserComponent } from './components/pages/registerUser/register-user.component';
 import { RegisterAdminComponent } from './components/pages/registerAdmin/register-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadAllBooksComponent } from './components/load-all-books/load-all-books.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
+import { UnapprovedUsersListComponent } from './components/unapproved-users-list/unapproved-users-list.component';
+import { AuthInterceptors } from './components/interceptors/auth.interceptor';
+import { UnapprovedUserCardComponent } from './components/unapproved-user-card/unapproved-user-card.component';
+import { NewBooksListComponent } from './components/pages/new-books-list/new-books-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { BookCardComponent } from './components/book-card/book-card.component';
     RegisterUserComponent,
     RegisterAdminComponent,
     LoadAllBooksComponent,
-    BookCardComponent
+    BookCardComponent,
+    UnapprovedUsersListComponent,
+    UnapprovedUserCardComponent,
+    NewBooksListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,7 @@ import { BookCardComponent } from './components/book-card/book-card.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptors, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
